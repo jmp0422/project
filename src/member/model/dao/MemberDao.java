@@ -38,7 +38,8 @@ public class MemberDao {
 
         // 관리자 로그인
         try {
-            String sql = "SELECT * FROM PCMEMBER WHERE USER_ID = ? AND USER_PW = ?";
+//            "SELECT * FROM PCMEMBER WHERE USER_ID = ? AND USER_PW = ?"
+            String sql = prop.getProperty("adminLogin");
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             ps.setString(2, pw);
@@ -71,7 +72,8 @@ public class MemberDao {
 
 
         try {
-            String sql = "INSERT INTO PCMEMBER VALUES (?, ?, ?, ?)";
+            //INSERT INTO PCMEMBER VALUES (?, ?, ?, ?)
+            String sql = prop.getProperty("addMember");
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             ps.setString(2, pw);
@@ -128,7 +130,8 @@ public class MemberDao {
 
 
         try {
-            String sql = "UPDATE PCMEMBER SET USER_PW = ?,USER_NAME =?,USER_TEL=? WHERE USER_ID=?";
+            //UPDATE PCMEMBER SET USER_PW = ?,USER_NAME =?,USER_TEL=? WHERE USER_ID=?
+            String sql = prop.getProperty("modifyMember");
             ps = conn.prepareStatement(sql);
             ps.setString(1, pw);
             ps.setString(2, name);
@@ -165,7 +168,8 @@ public class MemberDao {
 
 
         try {
-            String sql = "DELETE FROM PCMEMBER WHERE USER_ID = ?";
+            //DELETE FROM PCMEMBER WHERE USER_ID = ?
+            String sql = prop.getProperty("delete");
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
 
@@ -200,7 +204,8 @@ public class MemberDao {
 
 
         try {
-            String sql = "SELECT * FROM PCMEMBER";
+            //SELECT * FROM PCMEMBER
+            String sql = prop.getProperty("memberList");
             ps = conn.prepareStatement(sql);
             rset = ps.executeQuery();
             int i = 1;
@@ -231,45 +236,3 @@ public class MemberDao {
         AdminView.adminManage();
     }
 }
-
-
-//회원정보 조회
-//    public static void memberList() {
-//        PreparedStatement ps = null;
-//        ResultSet rset = null;
-//
-//        try {
-//            String sql = "SELECT * FROM PCMEMBER";
-//            ps = conn.prepareStatement(sql);
-//            rset = ps.executeQuery();
-//
-//            while (rset.next()) {
-//                String id = rset.getString("ID");
-//                String pw = rset.getString("PW");
-//                String name = rset.getString("NAME");
-//                String tel = rset.getString("TEL");
-//
-//                System.out.println("ID: " + id);
-//                System.out.println("PW: " + pw);
-//                System.out.println("Name: " + name);
-//                System.out.println("Tel: " + tel);
-//                System.out.println(); // 각 회원 정보를 구분하기 위한 빈 줄 추가
-//            }
-//
-//        } catch (SQLException e) {
-//            System.out.println("에러 발생: " + e.getMessage());
-//        } finally {
-//            try {
-//                if (rset != null) {
-//                    rset.close();
-//                }
-//                if (ps != null) {
-//                    ps.close();
-//                }
-//            } catch (SQLException e) {
-//                System.out.println("자원 해제 중 에러 발생: " + e.getMessage());
-//            }
-//        }
-//    }
-
-//}
