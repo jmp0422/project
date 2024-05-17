@@ -1,8 +1,12 @@
 package member.model.dto;
 
-public class MemberDto {
+import java.io.Serializable;
 
-    private String id;
+public class MemberDto implements Serializable {
+    private static final long serialVersionUID = 2304690199893905221L;
+
+
+    private static String id;
     private String pw;
     private String name;
     private String number;
@@ -12,7 +16,22 @@ public class MemberDto {
 
     }
 
-    public String getId() {
+
+    public MemberDto(String id, String pw, String name, String number){
+        super();
+        this.id = id;
+        this.pw = pw;
+        this.name = name;
+        this.number = number;
+    }
+
+    public MemberDto(String id, String pw){
+        super();
+        this.id = id;
+        this.pw = pw;
+    }
+
+    public static String getId() {
         return id;
     }
 
